@@ -1,4 +1,7 @@
-class Grass extends livingCreatures {
+let livingCreatures = require('./livingCreatures')
+let random = require("./random");
+
+module.exports = class Grass extends livingCreatures {
     constructor(x, y) {
         super(x, y);
         this.index = 1; // You may need to specify the index

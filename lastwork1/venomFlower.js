@@ -1,4 +1,8 @@
-class venomFlower extends livingCreatures {
+let livingCreatures = require('./livingCreatures')
+let random = require("./random");
+
+module.exports = class venomFlower extends livingCreatures {
+
     constructor(x, y) {
         super(x, y);
     }
