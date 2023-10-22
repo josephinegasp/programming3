@@ -92,42 +92,43 @@ function setupGame() {
    }
 }
 
-function playGame(){
-   for(var i in grassArr){
+function playGame() {
+   for (var i in grassArr) {
 
       grassArr[i].mul();
-      }
-      for(var i in grassEater){
+   }
+   for (var i in grassEater) {
 
       grassEater[i].eat();
-          }
-      for(var i in predatorArr){
+   }
+   for (var i in predatorArr) {
 
-      predatorArr[i].eat();      
-      }
-      for(var i in venomFlowerArr){
+      predatorArr[i].eat();
+   }
+   for (var i in venomFlowerArr) {
 
       venomFlowerArr[i].poison();
-                              
-       }
-      for(var i in flowerEaterArr){
+
+   }
+   for (var i in flowerEaterArr) {
 
       flowerEaterArr[i].eat();
-                       }
-      io.emit('update matrix', matrix);
+   }
+   io.emit('update matrix', matrix);
 }
 
-io.on('conection', function(socket){
-   socket.emit('update matrix',matrix)
+
+io.on('connection', function (socket) {
+   socket.emit('update matrix', matrix)
    setupGame()
    startPlaying()
 })
 
 let intervalID;
 
-function startPlaying(){
+function startPlaying() {
    clearInterval(intervalID)
-   intervalID = setInterval(() =>{
+   intervalID = setInterval(() => {
       playGame()
    }, 1000);
 
