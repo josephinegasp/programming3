@@ -2,12 +2,18 @@ let livingCreatures = require('./livingCreatures')
 let random = require("./random");
 
 module.exports = class Predator extends livingCreatures {
-    constructor(x, y) {
+    constructor(x, y, gender ) {
         super(x, y);
         this.energy = 20;
+        this.gender = gender;
+        this.breedingTimeout = 10;
     }
 
-    
+    decreaseBreedingTimeout() {
+        if (this.breedingTimeout > 0) {
+            this.breedingTimeout--;
+        }
+    }
 
     mul() {
         let found = this.chooseCell(0);
@@ -17,11 +23,15 @@ module.exports = class Predator extends livingCreatures {
             let x = exact[0];
             let y = exact[1];
 
-            let pre = new Predator(x, y);
+            let offspringGender = (Math.random() < 0.5) ? "male" : "female";
+
+            let pre = new Predator(x, y, offspringGender); 
             matrix[y][x] = 3;
             predatorArr.push(pre);
 
             this.energy = 20;
+            this.breedingTimeout = 10;
+           
         }
     }
 
